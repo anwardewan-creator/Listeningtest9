@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Computer-Delivered Listening Test</title>
+    <style>
+        /* CSS mimicking the IELTS CDT Interface */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        header {
+            background-color: #002b5e;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2em;
+        }
+        .container {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            background-color: white;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        h2, h3 {
+            color: #002b5e;
+        }
+        .instruction {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .split-layout {
+            display: flex;
+            gap: 30px;
+        }
+        .split-layout > div {
+            flex: 1;
+        }
+        .box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            background-color: #fdfdfd;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #aaa;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        input[type="text"] {
+            padding: 5px;
+            font-size: 1em;
+            border: 1px solid #777;
+            border-radius: 3px;
+            width: 150px;
+        }
+        input[type="text"]:focus {
+            background-color: #fffacd;
+            outline: none;
+            border-color: #002b5e;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+        .bottom-bar {
+            background-color: #e0e0e0;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid #ccc;
+        }
+        .nav-buttons button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-size: 1em;
+            cursor: pointer;
+            border: 1px solid #999;
+            background-color: white;
+        }
+        .nav-buttons button.active {
+            background-color: #002b5e;
+            color: white;
+            border-color: #002b5e;
+        }
+        .submit-btn {
+            background-color: #d9534f;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #c9302c;
+        }
+        #result-screen {
+            display: none;
+            text-align: center;
+        }
+        .feedback {
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .correct { color: green; }
+        .incorrect { color: red; }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .ref-image {
+            margin-top: 20px;
+            border: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>IELTS Listening Test 9[cite: 1]</div>
+        <div>Time left: <span id="timer">40:00</span></div>
+    </header>
+
+    <div class="container" id="test-container">
+        
+        <!-- PART 1 -->
+        <div id="part1" class="section active">
+            <h2>PART 1 Questions 1-10[cite: 1]</h2>
+            <div class="instruction">Questions 1-6[cite: 1]<br>Complete the table below.<br>Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.[cite: 1]</div>
+            
+            <h3 style="text-align:center;">HILARY LODGE RETIREMENT HOME[cite: 1]</h3>
+            <p>The name of the manager is Cathy.[cite: 1]</p>
+            
+            <table>
+                <tr>
+                    <th colspan="2">Activities programme involving volunteers[cite: 1]</th>
+                </tr>
+                <tr>
+                    <td>Monday evenings: computer training[cite: 1]</td>
+                    <td>• Training needed in how to produce <strong>1</strong> <input type="text" id="q1">[cite: 1]</td>
+                </tr>
+                <tr>
+                    <td>Tuesday afternoons: singing[cite: 1]</td>
+                    <td>• The home has a <strong>2</strong> <input type="text" id="q2"> and someone to play it[cite: 1]</td>
+                </tr>
+                <tr>
+                    <td>Thursday mornings: growing <strong>3</strong> <input type="text" id="q3">[cite: 1]</td>
+                    <td>• The home doesn’t have many <strong>4</strong> <input type="text" id="q4"> for gardening.[cite: 1]</td>
+                </tr>
+                <tr>
+                    <td colspan="2">• Once a month: meeting for volunteers and staff[cite: 1]</td>
+                </tr>
+            </table>
+
+            <div class="instruction">Questions 7-10</div>
+            
+            <ul>
+                <li><strong>Interview</strong>[cite: 1]
+                    <ul>
+                        <li>Go in on <strong>5</strong> <input type="text" id="q5">, any time[cite: 1]</li>
+                        <li>Interview with assistant called <strong>6</strong> <input type="text" id="q6">[cite: 1]</li>
+                        <li>Address of home: 73 <strong>7</strong> <input type="text" id="q7"> Road[cite: 1]</li>
+                    </ul>
+                </li>
+                <li><strong>‘Open house’ days</strong>[cite: 1]
+                    <ul>
+                        <li>Agreed to help on <strong>8</strong> <input type="text" id="q8">[cite: 1]</li>
+                        <li>Will show visitors where to <strong>9</strong> <input type="text" id="q9">[cite: 1]</li>
+                        <li>Possibility of talking to a <strong>10</strong> <input type="text" id="q10"> reporter[cite: 1]</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- PART 2 -->
+        <div id="part2" class="section">
+            <h2>PART 2 Questions 11-20[cite: 1]</h2>
+            <div class="split-layout">
+                <div>
+                    <div class="instruction">Questions 11-15[cite: 1]<br>Label the plan below.<br>Write the correct letter, A-H, next to Questions 11-15.[cite: 1]</div>
+                    
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li>Newspapers <strong>11</strong> <input type="text" id="q11" maxlength="1" style="width: 40px;">[cite: 1]</li>
+                        <li>Computers <strong>12</strong> <input type="text" id="q12" maxlength="1" style="width: 40px;">[cite: 1]</li>
+                        <li>Photocopier <strong>13</strong> <input type="text" id="q13" maxlength="1" style="width: 40px;">[cite: 1]</li>
+                        <li>Café <strong>14</strong> <input type="text" id="q14" maxlength="1" style="width: 40px;">[cite: 1]</li>
+                        <li>Sports books <strong>15</strong> <input type="text" id="q15" maxlength="1" style="width: 40px;">[cite: 1]</li>
+                    </ul>
+                    <img src="L M 9.jpg" alt="Plan of Learning Resource Centre (Ground Floor)" class="ref-image">[cite: 1]
+                </div>
+                
+                <div>
+                    <div class="instruction">Questions 16-20[cite: 1]<br>Complete the table below.<br>Write ONE WORD ONLY for each answer.[cite: 1]</div>
+                    <table>
+                        <tr>
+                            <th>Name[cite: 1]</th>
+                            <th>New responsibility[cite: 1]</th>
+                        </tr>
+                        <tr>
+                            <td>Jenny Reed[cite: 1]</td>
+                            <td>Buying <strong>16</strong> <input type="text" id="q16"> for the Centre[cite: 1]</td>
+                        </tr>
+                        <tr>
+                            <td>Phil Penshurst[cite: 1]</td>
+                            <td>Help with writing <strong>17</strong> <input type="text" id="q17"> for courses[cite: 1]</td>
+                        </tr>
+                        <tr>
+                            <td>Tom Salisbury[cite: 1]</td>
+                            <td>Information on topics related to the <strong>18</strong> <input type="text" id="q18">[cite: 1]</td>
+                        </tr>
+                        <tr>
+                            <td>Saeed Aktar[cite: 1]</td>
+                            <td>Finding a <strong>19</strong> <input type="text" id="q19">[cite: 1]</td>
+                        </tr>
+                        <tr>
+                            <td>Shilpa Desai[cite: 1]</td>
+                            <td>Help with <strong>20</strong> <input type="text" id="q20">[cite: 1]</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PART 3 -->
+        <div id="part3" class="section">
+            <h2>PART 3 Questions 21-30[cite: 1]</h2>
+            
+            <div class="split-layout">
+                <div>
+                    <div class="instruction">Questions 21-27[cite: 1]<br>What helped Stewart with each of the following stages in making his training film for museum employees?[cite: 1]<br>Choose SEVEN answers from the box and write the correct letter, A-I, next to Questions 21-27.[cite: 1]</div>
+                    
+                    <div class="box">
+                        <strong>What helped Stewart?</strong><br><br>
+                        A advice from friends<br>
+                        B information on a website<br>
+                        C being allowed extra time<br>
+                        D meeting a professional film maker<br>
+                        E good weather conditions<br>
+                        F getting a better computer<br>
+                        G support of a manager<br>
+                        H help from a family member<br>
+                        I work on a previous assignment[cite: 1]
+                    </div>
+                </div>
+                <div>
+                    <strong>Stages in making the training film for museum employees</strong><br><br>
+                    finding a location <strong>21</strong> <input type="text" id="q21" maxlength="1" style="width: 40px;">[cite: 1]<br><br>
+                    deciding on equipment <strong>22</strong> <input type="text" id="q22" maxlength="1" style="width: 40px;">[cite: 1]<br><br>
+                    writing the script <strong>23</strong> <input type="text" id="q23" maxlength="1" style="width: 40px;">[cite: 1]<br><br>
+                    casting <strong>24</strong> <input type="text" id="q24" maxlength="1" style="width: 40px;">[cite: 1]<br><br>
+                    filming <strong>25</strong> <input type="text" id="q25" maxlength="1" style="width: 40px;">[cite: 1]<br><br>
+                    editing <strong>26</strong> <input type="text" id="q26" maxlength="1" style="width: 40px;">[cite: 1]<br><br>
+                    designing the DVD cover <strong>27</strong> <input type="text" id="q27" maxlength="1" style="width: 40px;">[cite: 1]<br><br>
+                </div>
+            </div>
+
+            <div class="instruction" style="margin-top: 30px;">Questions 28-30[cite: 1]<br>Complete the notes below.<br>Write ONE WORD ONLY for each answer.[cite: 1]</div>
+            
+            <strong>Stewart’s work placement: benefits to the Central Museum Association[cite: 1]</strong>
+            <ul>
+                <li>his understanding of the Association’s <strong>28</strong> <input type="text" id="q28"> .[cite: 1]</li>
+                <li>the reduction in expense.[cite: 1]</li>
+                <li>increased co-operation between <strong>29</strong> <input type="text" id="q29"> .[cite: 1]</li>
+                <li>continuous <strong>30</strong> <input type="text" id="q30"> which led to a better product.[cite: 1]</li>
+                <li>ideas for distribution of the film.[cite: 1]</li>
+            </ul>
+
+        </div>
+
+        <!-- PART 4 -->
+        <div id="part4" class="section">
+            <h2>PART 4 Questions 31-40[cite: 1]</h2>
+            <div class="instruction">Complete the notes below.<br>Write ONE WORD ONLY for each answer.[cite: 1]</div>
+            
+            <h3>New Caledonian crows and the use of tools[cite: 1]</h3>
+            
+            <strong>Examples of animals using tools[cite: 1]</strong>
+            <ul>
+                <li>some chimpanzees use stones to break nuts.[cite: 1]</li>
+                <li>Betty (New Caledonian crow) made a <strong>31</strong> <input type="text" id="q31"> out of wire to move a bucket of food.[cite: 1]</li>
+                <li>Barney (New Caledonian crow) used sticks to find food.[cite: 1]</li>
+            </ul>
+
+            <strong>New Zealand and Oxford experiment[cite: 1]</strong>
+            <ul>
+                <li>three stages crows needed to move a <strong>32</strong> <input type="text" id="q32"> in order to reach a short stick, then use the short stick to reach a long stick, then use the long stick to reach food.[cite: 1]</li>
+            </ul>
+
+            <strong>Oxford research[cite: 1]</strong>
+            <ul>
+                <li>Crows used sticks to investigate whether there was any <strong>33</strong> <input type="text" id="q33"> from an object.[cite: 1]</li>
+                <li>research was inspired by seeing crows using tools on a piece of cloth to investigate a spider design.[cite: 1]</li>
+                <li>Barney used a stick to investigate a snake made of <strong>34</strong> <input type="text" id="q34"> .[cite: 1]</li>
+                <li>Pierre used a stick to investigate a <strong>35</strong> <input type="text" id="q35"> .[cite: 1]</li>
+                <li>Corbeau used a stick to investigate a metal toad.[cite: 1]</li>
+                <li>The crows only used sticks for the first contract.[cite: 1]</li>
+            </ul>
+
+            <strong>Conclusion of above research[cite: 1]</strong>
+            <ul>
+                <li>ability to plan provides interesting evidence of the bird’s cognition.[cite: 1]</li>
+                <li>unclear whether this is evidence of the birds’ <strong>36</strong> <input type="text" id="q36"> .[cite: 1]</li>
+            </ul>
+
+            <strong>Exeter and Oxford research in New Caledonia[cite: 1]</strong>
+            <ul>
+                <li>Scientists have attached very small cameras to birds’ <strong>37</strong> <input type="text" id="q37"> .[cite: 1]</li>
+                <li>food in the form of beetle larvae provides plenty of <strong>38</strong> <input type="text" id="q38"> for the birds.[cite: 1]</li>
+                <li>larvae’s specific <strong>39</strong> <input type="text" id="q39"> composition can be identified in birds that feed on them.[cite: 1]</li>
+                <li>Scientists will analyze what the birds include in their <strong>40</strong> <input type="text" id="q40"> .[cite: 1]</li>
+            </ul>
+        </div>
+        
+        <!-- RESULT SCREEN -->
+        <div id="result-screen" class="section">
+            <h2>Listening Test Results</h2>
+            <h1 style="color:#002b5e; font-size: 3em;">Band Score: <span id="band-score"></span></h1>
+            <h3>Raw Score: <span id="raw-score"></span> / 40</h3>
+            <p>Review your answers below. Correct answers have been marked.</p>
+            <br>
+            <img src="IELTS Listening marking schemes.png" alt="IELTS Listening Marking Schemes" class="ref-image" style="max-width: 600px;">
+        </div>
+
+    </div>
+
+    <div class="bottom-bar">
+        <div class="nav-buttons">
+            <button id="btn-part1" class="active" onclick="showSection('part1', this)">Part 1</button>
+            <button id="btn-part2" onclick="showSection('part2', this)">Part 2</button>
+            <button id="btn-part3" onclick="showSection('part3', this)">Part 3</button>
+            <button id="btn-part4" onclick="showSection('part4', this)">Part 4</button>
+        </div>
+        <button class="submit-btn" onclick="submitTest()">Submit Test</button>
+    </div>
+
+    <script>
+        // IELTS Listening Marking Key[cite: 1]
+        const answerKey = {
+            q1: ["documents", "simple documents"],
+            q2: ["keyboard"],
+            q3: ["flowers"],
+            q4: ["tools"],
+            q5: ["saturday"],
+            q6: ["mairead"],
+            q7: ["bridge"],
+            q8: ["14 may", "may 14", "14th may", "may 14th", "14.05", "14th of may"],
+            q9: ["park"],
+            q10: ["newspaper"],
+            q11: ["c"],
+            q12: ["b"],
+            q13: ["a"],
+            q14: ["h"],
+            q15: ["g"],
+            q16: ["films", "movies", "films/movies"],
+            q17: ["reports"],
+            q18: ["region"],
+            q19: ["job"],
+            q20: ["housing"],
+            q21: ["e"],
+            q22: ["i"],
+            q23: ["c"],
+            q24: ["g"],
+            q25: ["b"],
+            q26: ["d"],
+            q27: ["a"],
+            q28: ["aims", "objectives", "goals"],
+            q29: ["staff"],
+            q30: ["feedback"],
+            q31: ["hook"],
+            q32: ["string"],
+            q33: ["danger"],
+            q34: ["rubber"],
+            q35: ["light"],
+            q36: ["intelligence"],
+            q37: ["tail", "tails"],
+            q38: ["energy"],
+            q39: ["chemical"],
+            q40: ["diet"]
+        };
+
+        function showSection(sectionId, btn) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            // Remove active class from all buttons
+            document.querySelectorAll('.nav-buttons button').forEach(b => b.classList.remove('active'));
+            
+            // Show selected section and activate button
+            document.getElementById(sectionId).classList.add('active');
+            if(btn) btn.classList.add('active');
+        }
+
+        function calculateBand(score) {
+            if (score >= 39) return 9.0;
+            if (score >= 37) return 8.5;
+            if (score >= 35) return 8.0;
+            if (score >= 32) return 7.5;
+            if (score >= 30) return 7.0;
+            if (score >= 26) return 6.5;
+            if (score >= 23) return 6.0;
+            if (score >= 18) return 5.5;
+            if (score >= 16) return 5.0;
+            if (score >= 13) return 4.5;
+            if (score >= 10) return 4.0;
+            if (score >= 8) return 3.5;
+            if (score >= 6) return 3.0;
+            if (score >= 4) return 2.5;
+            return 0.0;
+        }
+
+        function submitTest() {
+            let totalScore = 0;
+            
+            // Evaluate answers
+            for (let i = 1; i <= 40; i++) {
+                let inputField = document.getElementById('q' + i);
+                let userAnswer = inputField.value.trim().toLowerCase();
+                let correctAnswers = answerKey['q' + i];
+                
+                let feedbackSpan = document.createElement('span');
+                feedbackSpan.className = 'feedback';
+                
+                if (correctAnswers.includes(userAnswer)) {
+                    totalScore++;
+                    inputField.style.borderColor = "green";
+                    inputField.style.backgroundColor = "#e8f5e9";
+                    feedbackSpan.innerHTML = "✔";
+                    feedbackSpan.classList.add('correct');
+                } else {
+                    inputField.style.borderColor = "red";
+                    inputField.style.backgroundColor = "#ffebee";
+                    feedbackSpan.innerHTML = "✘ (Ans: " + correctAnswers[0] + ")";
+                    feedbackSpan.classList.add('incorrect');
+                }
+                
+                inputField.disabled = true;
+                
+                // Prevent duplicate appends if submitted multiple times
+                if (!inputField.nextElementSibling || !inputField.nextElementSibling.classList.contains('feedback')) {
+                    inputField.parentNode.insertBefore(feedbackSpan, inputField.nextSibling);
+                }
+            }
+
+            // Display results
+            document.getElementById('raw-score').innerText = totalScore;
+            document.getElementById('band-score').innerText = calculateBand(totalScore);
+            
+            document.querySelector('.nav-buttons').style.display = 'none';
+            document.querySelector('.submit-btn').style.display = 'none';
+            
+            // Show all sections so user can scroll and review
+            document.querySelectorAll('.section').forEach(sec => sec.classList.add('active'));
+            document.getElementById('result-screen').style.display = 'block';
+            
+            // Scroll to top
+            document.querySelector('.container').scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
